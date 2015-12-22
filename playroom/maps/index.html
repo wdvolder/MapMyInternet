@@ -1,0 +1,68 @@
+<html>
+	<head>
+		<title>DevOps Dashboard</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="../js/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+		<script>
+		
+		jQuery.extend({
+			loadMap: function(url){
+				var result = null;
+
+				$.ajax({
+					url: url,
+					type: 'get',
+					dataType: 'text',
+					async: false,
+					success: function(data) {
+						result = data;
+					}
+				});
+				
+				
+				return JSON.parse(result);
+
+			}
+		});
+
+		function loadMap(m){
+
+			for(var item in m.items){
+				obj="<a    href=\"" + m.items[item].href + "\""
+						+" id=\"object_" + item + "\""
+						+" style=\"border-width:0\">"
+					 +"<img src=\"" + m.items[item].object.src + "\""
+					 +    " alt=\"" + m.items[item].title + "\""
+					 +    " style=\"z-index:" + m.items[item].style.zindex + "; "
+								  +"top:" + m.items[item].style.top + "px; "
+								  +"left:" + m.items[item].style.left + "px; "
+								  +"position:absolute\"/>"
+					+"</a>";
+				$("div").append(obj);
+				$("#object_" + item).draggable();
+			}
+		}
+		
+		
+		$(document).ready(function(){
+				map = $.loadMap("mapdef.json");
+				
+				$("button").click(function(){
+						loadMap(map);
+				});
+		});
+
+		</script>
+	</head>
+	<body>
+		<div style="width:600px; height:400px; xborder-style:solid; xborder-color: black">
+			<a href="http://jenkins-ci.org/" style="border-width:0"><img src="../objects/Jenkins.png" 			style="z-index:20; top: 20px; left:500px; position:absolute"></a>
+			<a href="http://liferay.com/" style="border-style:none"><img src="../objects/Liferay.png" 			style="z-index:30; top: 100px; left:60px; position:absolute"></a>
+			<a href="https://enterprise.github.com/home" style="border-style:none"><img src="../objects/GitHubEnterprise.png"	style="z-index:30; top: 100px; left:260px; position:absolute"></a>
+			<a href="http://www.sonarqube.org/" style="border-style:none"><img src="../objects/sonar.png" style="z-index:30; top: 100px; left:460px; position:absolute"></a>
+		</div>
+		
+		<button>Update</button>
+
+	</body>
+</html>

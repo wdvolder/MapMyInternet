@@ -1,0 +1,30 @@
+{
+	"title": "Wouters DevOps Dashboard",
+	"items": [{
+		"title": "Docker",
+		"href": "http://localhost:8080",
+		"style": {
+			"zindex": 20,
+			"top": 200,
+			"left": 50,
+			"width": 40
+		},
+		"object": {
+			"type": "img",
+			"src": "../objects/docker.png"
+		}
+	}, {
+		"title": "Jenkins",
+		"href": "http://localhost:8080",
+		"style": {
+			"zindex": 20,
+			"top": 320,
+			"left": 50,
+			"width": 40
+		},
+		"object": {
+			"type": "img",
+			"src": "../objects/Jenkins.png"
+		}
+	}]
+}
